@@ -44,6 +44,7 @@ class TENConfig:
     
     # Feedforward (Section 3.6)
     ffn_hidden_dim: Optional[int] = None  # Default: 4 * hidden_dim
+    intermediate_dim: Optional[int] = None  # Alias for ffn_hidden_dim
     ffn_dropout: float = 0.1
     
     # Regularization
@@ -58,10 +59,16 @@ class TENConfig:
     max_seq_length: int = 8192
     use_positional_encoding: bool = True
     
+    # Parallel scan for O(log T) training
+    use_parallel_scan: bool = True
+    
     # Initialization (Appendix B.2)
     init_std: float = 0.02
     
     def __post_init__(self):
+        # Handle intermediate_dim alias
+        if self.intermediate_dim is not None and self.ffn_hidden_dim is None:
+            self.ffn_hidden_dim = self.intermediate_dim
         if self.ffn_hidden_dim is None:
             self.ffn_hidden_dim = 4 * self.hidden_dim
         

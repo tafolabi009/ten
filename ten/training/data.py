@@ -351,3 +351,7 @@ class CollatorForLanguageModeling:
             "input_ids": torch.stack(input_ids),
             "labels": torch.stack(labels),
         }
+
+
+# Alias for convenience
+TextDataset = WikiTextDataset

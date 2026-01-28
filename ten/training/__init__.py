@@ -10,6 +10,7 @@ from ten.training.data import (
     WikiTextDataset,
     OpenWebTextDataset,
     LongRangeArenaDataset,
+    TextDataset,  # Alias for WikiTextDataset
     get_wikitext_dataloader,
     get_lra_dataloader,
 )
@@ -25,6 +26,7 @@ __all__ = [
     "WikiTextDataset",
     "OpenWebTextDataset",
     "LongRangeArenaDataset",
+    "TextDataset",
     "get_wikitext_dataloader",
     "get_lra_dataloader",
     "CosineWithWarmupScheduler",
